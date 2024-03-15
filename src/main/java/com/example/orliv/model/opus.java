@@ -31,7 +31,15 @@ public class opus {
     @Column(name = "era", nullable = false)
     private Character era;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "opus")
     private List<author> author = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "edition_opuses",
+            joinColumns = @JoinColumn(name = "edition_id"),
+            inverseJoinColumns = @JoinColumn(name = "opuses_id")
+    )
+    private List<edition> editions;
 
 }

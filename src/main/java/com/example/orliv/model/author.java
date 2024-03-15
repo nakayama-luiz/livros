@@ -37,7 +37,7 @@ public class author {
     @Column(nullable = false, name = "opuses")
     @ManyToMany
     @JoinTable(
-            name = "opus",
+            name = "opus_author",
             joinColumns = @JoinColumn(name = "opus_id"),
             inverseJoinColumns = @JoinColumn(name = "author_id")
     )
