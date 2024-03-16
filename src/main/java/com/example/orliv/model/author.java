@@ -1,5 +1,6 @@
 package com.example.orliv.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -27,15 +28,14 @@ public class author {
     @Column(name = "name", nullable = false, length = 255)
     private String name;
 
-    @NotBlank(message = "Not valid vulgo")
-    @Column(name = "vulgos")
+    // @NotBlank(message = "Not valid vulgo")
+    // @Column(name = "vulgos")
     @ElementCollection
     private Set<String> vulgos = new HashSet<>();
 
-    @NotBlank
-    @NotNull
     @Column(nullable = false, name = "opuses")
     @ManyToMany
+    @JsonBackReference
     @JoinTable(
             name = "opus_author",
             joinColumns = @JoinColumn(name = "opus_id"),

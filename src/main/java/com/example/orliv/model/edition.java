@@ -1,10 +1,7 @@
 package com.example.orliv.model;
 
 import com.example.orliv.model.enums.language;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,6 +17,8 @@ import java.util.Set;
 public class edition {
 
     @Id
+    @SequenceGenerator(allocationSize = 1, name = "gen_edition", sequenceName = "seq_edition")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @ManyToMany(mappedBy = "editions")
@@ -39,5 +38,15 @@ public class edition {
 
     private String cover;
 
+    @ManyToOne
+    @JoinColumn(name = "publisher_id")
+    private publisher publisher;
 
+    @ManyToMany
+    @JoinTable(
+            name = "edition_bookcases",
+            joinColumns = @JoinColumn(name = "bookcases_id"),
+            inverseJoinColumns = @JoinColumn(name = "edition_id")
+    )
+    private List<bookcases> bookcases;
 }
