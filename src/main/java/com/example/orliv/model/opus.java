@@ -3,9 +3,10 @@ package com.example.orliv.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 import java.util.ArrayList;
@@ -33,7 +34,8 @@ public class opus {
     //private Character era;
 
     @ManyToMany(mappedBy = "opus")
-    private List<author> author = new ArrayList<author>();
+    @NotNull
+    private List<author> author = new ArrayList<>();
 
     @ManyToMany
     @JsonBackReference

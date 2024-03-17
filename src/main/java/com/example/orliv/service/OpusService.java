@@ -23,21 +23,28 @@ public class OpusService {
 
 
     public opus getOpusById(Long id){
-       opus opus = opusRepository.findById(id).orElseThrow(
-               ()-> new EntityNotFoundException("Obra não encontrada")
+       opus opus = opusRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Obra não encontrada")
        );
        return opus;
     }
 
     public opus createOpus(opus opus){
-        List<author> authors = new ArrayList<>();
-        author author = authorRepository.findAll().get(0);
-        author.setOpus(opusRepository.findAll());
-        authors.add(author);
-        opus.setAuthor(authors);
-
-
         return opusRepository.save(opus);
+    }
+    public opus CreateOpus(opus _opus, Long author_id) {
+        author author = authorRepository.findById(author_id).orElseThrow(
+                () -> new EntityNotFoundException("Author not found")
+        );
+        System.out.println(author.getName());
+        author.getOpus().add(_opus);
+
+        _opus.getAuthor().add(author);
+
+        return opusRepository.save(_opus);
+
+    }
+    public List<opus> getAllOpus(){
+        return opusRepository.findAll();
     }
 
 }

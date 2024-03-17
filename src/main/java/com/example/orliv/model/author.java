@@ -33,13 +33,13 @@ public class author {
     @ElementCollection
     private Set<String> vulgos = new HashSet<>();
 
-    @Column(nullable = false, name = "opuses")
+    @Column(name = "opuses")
     @ManyToMany
     @JsonBackReference
     @JoinTable(
             name = "opus_author",
-            joinColumns = @JoinColumn(name = "opus_id"),
-            inverseJoinColumns = @JoinColumn(name = "author_id")
+            joinColumns = @JoinColumn(name = "author_id"),
+            inverseJoinColumns = @JoinColumn(name = "opus_id")
     )
     private List<opus> opus = new ArrayList<>();
 

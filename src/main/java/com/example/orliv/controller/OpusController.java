@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/opus")
+@RequestMapping(value = "/api/opus")
 @Tag(name = "orvil")
 public class OpusController {
 
@@ -32,11 +32,19 @@ public class OpusController {
                 .body(this.opusService.getOpusById(id));
     }
 
-    @PostMapping
-    public ResponseEntity<opus> createOpus(@RequestBody opus opus){
+
+    @GetMapping("/opuses")
+    public ResponseEntity<List<opus>> getAllOpus(){
         return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(this.opusService.createOpus(opus));
+                .status(HttpStatus.OK)
+                .body(this.opusService.getAllOpus());
+    }
+
+    @PostMapping("/{author_id}")
+    public ResponseEntity<opus> createOpus(@RequestBody opus opus, @PathVariable Long author_id){
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .body(this.opusService.CreateOpus(opus, author_id));
+
     }
 
 }
