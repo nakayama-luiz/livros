@@ -2,6 +2,7 @@ package com.example.orliv.model;
 
 import com.example.orliv.model.enums.language;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,6 +23,7 @@ public class edition {
     private Long id;
 
     @ManyToMany(mappedBy = "editions")
+    @NotNull
     private List<opus> opuses;
 
     private String editionTitle;

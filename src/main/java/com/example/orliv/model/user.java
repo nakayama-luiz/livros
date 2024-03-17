@@ -1,6 +1,7 @@
 package com.example.orliv.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,6 +26,7 @@ public class user {
     private String username;
 
     @OneToMany(mappedBy = "owner")
+    @JsonBackReference
     private List<bookcases> bookcasesList = new ArrayList<>();
 
     private String profilePic;

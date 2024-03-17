@@ -1,6 +1,9 @@
 package com.example.orliv.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,12 +24,13 @@ public class bookcases {
     @ManyToMany(mappedBy = "bookcases")
     private List<edition> editions = new ArrayList<>();
 
+    @NotNull(message = "Name cannot be null")
+    @NotBlank(message = "Blank names are not allowed")
     private String name;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "user_id")
     private user owner;
-
-
 
 }

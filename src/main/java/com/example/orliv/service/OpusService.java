@@ -35,7 +35,6 @@ public class OpusService {
         author author = authorRepository.findById(author_id).orElseThrow(
                 () -> new EntityNotFoundException("Author not found")
         );
-        System.out.println(author.getName());
         author.getOpus().add(_opus);
 
         _opus.getAuthor().add(author);
