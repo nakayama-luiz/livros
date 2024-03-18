@@ -15,8 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/publisher")
 public class PublisherController {
 
-    @Autowired
-    private PublisherService publisherService;
+
+    private final PublisherService publisherService;
+
+    public PublisherController(PublisherService publisherService) {
+        this.publisherService = publisherService;
+    }
 
     @PostMapping
     public ResponseEntity<publisher> createPublisher(@RequestBody publisher publisher){

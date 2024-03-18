@@ -16,7 +16,6 @@ public class BookcaseController {
         this.bookcaseService = bookcaseService;
     }
 
-
     @PostMapping("/{user_id}")
     public ResponseEntity<bookcases> createBookcase(@RequestBody bookcases bookcases, @PathVariable Long user_id){
         return ResponseEntity.status(HttpStatus.CREATED).body(bookcaseService.createBookcase(bookcases, user_id));

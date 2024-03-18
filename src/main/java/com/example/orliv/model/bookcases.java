@@ -22,6 +22,7 @@ public class bookcases {
     private Long id;
 
     @ManyToMany(mappedBy = "bookcases")
+    @JsonBackReference
     private List<edition> editions = new ArrayList<>();
 
     @NotNull(message = "Name cannot be null")

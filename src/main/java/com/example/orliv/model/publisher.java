@@ -1,5 +1,6 @@
 package com.example.orliv.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,6 +21,7 @@ public class publisher {
 
     private String description;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "publisher")
     private List<edition> editions;
 
