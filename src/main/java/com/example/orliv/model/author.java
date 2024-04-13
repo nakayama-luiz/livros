@@ -28,8 +28,7 @@ public class author {
     @Column(name = "name", nullable = false, length = 255)
     private String name;
 
-    // @NotBlank(message = "Not valid vulgo")
-    // @Column(name = "vulgos")
+    @NotBlank(message = "Not valid vulgo")
     @ElementCollection
     private Set<String> vulgos = new HashSet<>();
 

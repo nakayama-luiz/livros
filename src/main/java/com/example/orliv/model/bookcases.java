@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
@@ -13,6 +15,8 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "bookcase")
 public class bookcases {
 
@@ -33,4 +37,9 @@ public class bookcases {
     @JoinColumn(name = "user_id")
     private user owner;
 
+    public bookcases(String favoritos, user user) {
+        this.name= favoritos;
+        this.owner=user;
+
+    }
 }
