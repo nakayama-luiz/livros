@@ -29,6 +29,7 @@ public class OpusService {
     }
 
     public opus createOpus(opus opus){
+
         return opusRepository.save(opus);
     }
     public opus CreateOpus(opus _opus, Long author_id) {
@@ -38,6 +39,8 @@ public class OpusService {
         author.getOpus().add(_opus);
 
         _opus.getAuthor().add(author);
+
+        System.out.println(_opus.getEra());
 
         return opusRepository.save(_opus);
 

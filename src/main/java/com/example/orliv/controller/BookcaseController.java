@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/bookcase")
+@RequestMapping(value = "/api/bookcase", consumes = "application/json", produces = "application/json")
 public class BookcaseController {
 
     private final BookcaseService bookcaseService;

@@ -21,21 +21,30 @@ import java.util.Set;
 public class edition {
 
     @Id
-    @SequenceGenerator(allocationSize = 1, name = "gen_edition", sequenceName = "seq_edition")
+    @SequenceGenerator(allocationSize = 1, name = "gen_edition", sequenceName = "seq_edition", initialValue = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @ManyToMany(mappedBy = "editions")
-    private List<opus> opuses;
+    @ManyToMany
+    @NotNull
+    @JoinTable(
+            name = "editions_opuses",
+            joinColumns = @JoinColumn(name = "edition_id"),
+            inverseJoinColumns = @JoinColumn(name = "opus_id")
+    )
+    private List<opus> opuses = new ArrayList<>();
 
     @Column(name = "edition_title")
     @JsonProperty("edition_title")
     private String editionTitle;
 
+
+    @Enumerated(EnumType.STRING)
     @ElementCollection
-    private List<String> languages;
+    private List<language> language;
 
     @Column(name = "isbn")
+    @JsonProperty("ISBN")
     private String ISBN;
 
     @Column(name = "pages")

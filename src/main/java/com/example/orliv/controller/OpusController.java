@@ -20,7 +20,6 @@ public class OpusController {
 
     private final OpusService opusService;
 
-
     public OpusController(OpusService opusService) {
         this.opusService = opusService;
     }
