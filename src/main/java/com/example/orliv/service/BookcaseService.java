@@ -37,7 +37,7 @@ public class BookcaseService {
         edition edition = editionRepository.findById(edition_id).orElseThrow(
                 ()-> new EntityNotFoundException("Edition not found.")
         );
-        bookcases.getEditions().add(edition);
+        bookcases.setEditions(edition);
         return bookcases;
     }
 

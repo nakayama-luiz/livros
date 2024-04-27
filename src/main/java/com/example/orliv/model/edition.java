@@ -65,13 +65,16 @@ public class edition {
     @JoinColumn(name = "publisher_id")
     private publisher publisher;
 
-    @ManyToMany
-    @JoinTable(
-            name = "edition_bookcases",
-            joinColumns = @JoinColumn(name = "bookcases_id"),
-            inverseJoinColumns = @JoinColumn(name = "edition_id")
-    )
-    private List<bookcases> bookcases;
+    @OneToMany(mappedBy = "editions")
+    @JsonBackReference
+    private List<bookcases> bookcase = new ArrayList<>();
+//    @ManyToMany
+//    @JoinTable(
+//            name = "edition_bookcases",
+//            joinColumns = @JoinColumn(name = "bookcases_id"),
+//            inverseJoinColumns = @JoinColumn(name = "edition_id")
+//    )
+//    private List<bookcases> bookcases;
 
 
 }
