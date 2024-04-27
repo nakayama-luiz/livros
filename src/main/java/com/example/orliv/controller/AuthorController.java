@@ -31,4 +31,8 @@ public class AuthorController {
             return ResponseEntity.status(HttpStatus.CREATED).body(authorService.createAuthor(author));
     }
 
+    @PutMapping
+    public ResponseEntity<author> upateAuthor(@RequestBody author author){
+        return ResponseEntity.status(HttpStatus.CREATED).body(authorService.updateAuthor(author));
+    }
 }

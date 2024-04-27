@@ -1,6 +1,8 @@
 package com.example.orliv.model;
 
+import com.example.orliv.model.enums.Status;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -36,6 +38,13 @@ public class bookcases {
     @JsonBackReference
     @JoinColumn(name = "user_id")
     private user owner;
+
+    @Column(nullable = true)
+    private Boolean favorite;
+
+    @Column(nullable = true)
+    @Enumerated(EnumType.ORDINAL)
+    private Status status;
 
     public bookcases(String favoritos, user user) {
         this.name= favoritos;

@@ -1,15 +1,16 @@
 package com.example.orliv;
 
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
-import io.swagger.v3.oas.annotations.info.Info;
+import jakarta.persistence.Table;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import java.io.*;
 
 @SpringBootApplication
 public class OrlivApplication {
+	public static void main(String[] args) throws IOException  {
 
-	public static void main(String[] args) {
-		SpringApplication.run(OrlivApplication.class, args);
+
+        SpringApplication.run(OrlivApplication.class, args);
 	}
 
 }

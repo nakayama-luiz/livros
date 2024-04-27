@@ -8,6 +8,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.*;
 import java.util.List;
 
 @Service
@@ -24,8 +25,15 @@ public class AuthorService {
 
 
     public author createAuthor(author author){
-       return authorRepository.save(author);
+        if(author.getVulgos().isEmpty()){
+           author.getVulgos().add("default");
+        }
+        return authorRepository.save(author);
 
+    }
+
+    public author updateAuthor(author author){
+        return authorRepository.save(author);
     }
 
 }
