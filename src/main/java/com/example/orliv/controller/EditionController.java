@@ -17,8 +17,6 @@ public class EditionController {
 
     private final EditionService editionService;
 
-
-
     private final OpusService opusService;
 
     public EditionController(EditionService editionService, OpusService opusService) {
@@ -27,9 +25,7 @@ public class EditionController {
     }
 
 
-
-
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<edition> aVoid(@RequestBody edition edition){
 
         return ResponseEntity.status(HttpStatus.CREATED).body(this.editionService.createEdition(edition));

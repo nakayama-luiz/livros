@@ -3,10 +3,14 @@ package com.example.orliv.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +31,10 @@ public class user {
 
     private String password;
 
+    @Column(name = "username", unique = true)
+    @NotBlank
+    @NotNull
+    @Length(min = 3)
     private String username;
 
     @OneToMany(mappedBy = "owner")

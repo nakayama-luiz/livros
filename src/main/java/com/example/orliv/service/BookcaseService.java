@@ -41,4 +41,15 @@ public class BookcaseService {
         return bookcases;
     }
 
+    public bookcases update(bookcases estante){
+        return bookcaseRepository.save(estante);
+    }
+
+    public bookcases favorite(Long bookcase_id){
+        bookcases bookcases = bookcaseRepository.findById(bookcase_id).orElseThrow();
+
+        bookcases.setFavorite(true);
+        return bookcaseRepository.save(bookcases);
+    }
+
 }

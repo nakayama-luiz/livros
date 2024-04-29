@@ -10,7 +10,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.cglib.core.Local;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,9 +29,6 @@ public class bookcases {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-//    @ManyToMany(mappedBy = "bookcases")
-//    private List<edition> editions = new ArrayList<>();
-
     @NotNull(message = "Name cannot be null")
     @NotBlank(message = "Blank names are not allowed")
     private String name;
@@ -42,23 +41,22 @@ public class bookcases {
     @Column(nullable = true)
     private Boolean favorite;
 
-    @NotNull
-    @NotBlank
+    @Column(name = "rating", nullable = true)
+    private Double rating;
+
+    private LocalDate start;
+
+    private LocalDate end;
+
+    @OneToMany(mappedBy = "bookcase")
+    private List<ReadingHistory> readingHistory;
+
     @Enumerated(EnumType.ORDINAL)
     private Status status;
-//
-//    @OneToMany(mappedBy = "bookcase")
-//    @JsonBackReference
-//    private List<edition> editions = new ArrayList<>();
-//
+
     @ManyToOne
     @JoinColumn(name = "editions_id")
-    @JsonBackReference
     private edition editions;
 
-    public bookcases(String favoritos, user user) {
-        this.name= favoritos;
-        this.owner=user;
 
-    }
 }

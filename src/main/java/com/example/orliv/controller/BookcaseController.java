@@ -28,4 +28,9 @@ public class BookcaseController {
 
     }
 
+    @PutMapping
+    public ResponseEntity<bookcases> update(@RequestBody bookcases estante){
+        return ResponseEntity.status(HttpStatus.OK).body(bookcaseService.update(estante));
+    }
+
 }
