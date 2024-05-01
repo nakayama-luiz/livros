@@ -27,19 +27,19 @@ public class user {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
+    @NotBlank @NotNull @Length(min = 3)
     private String displayName;
 
+    @NotBlank @NotNull @Length(min=6)
     private String password;
 
     @Column(name = "username", unique = true)
-    @NotBlank
-    @NotNull
-    @Length(min = 3)
+    @NotBlank @NotNull @Length(min = 3)
     private String username;
 
     @OneToMany(mappedBy = "owner")
-    //@JsonBackReference
     private List<bookcases> bookcasesList = new ArrayList<>();
+
 
     private String profilePic;
 

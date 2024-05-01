@@ -1,8 +1,11 @@
 package com.example.orliv.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,9 +31,10 @@ public class opus {
 
     @Column(name = "time", nullable = false)
     //@NotBlank( message = "Invalid date")
+    @NotNull
     private Long time;
 
-    @Column(name = "era", nullable = false, length = 2)
+    @Column(name = "era", nullable = false, length = 2, columnDefinition = "DC")
     @Enumerated(EnumType.STRING)
     private eras era = eras.AC;
 
@@ -38,8 +42,8 @@ public class opus {
     @NotNull
     private List<author> author = new ArrayList<>();
 
-
     @ManyToMany(mappedBy = "opuses")
+    @JsonBackReference
     private List<edition> editions = new ArrayList<>();
 
 }

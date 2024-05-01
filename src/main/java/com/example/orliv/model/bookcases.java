@@ -2,10 +2,13 @@ package com.example.orliv.model;
 
 import com.example.orliv.model.enums.Status;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -56,10 +59,15 @@ public class bookcases {
     @Enumerated(EnumType.ORDINAL)
     private Status status;
 
+    @NotNull
+    @NotEmpty
     @ManyToOne
     @JoinColumn(name = "editions_id")
     private edition editions;
 
+    @Size(min = 0)
+    @JsonProperty("read_pages")
+    @Column(name = "read_pages")
     private Long readPages = 0L;
 
 

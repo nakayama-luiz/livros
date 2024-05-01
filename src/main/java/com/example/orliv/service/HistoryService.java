@@ -3,6 +3,7 @@ package com.example.orliv.service;
 import com.example.orliv.model.ReadingHistory;
 import com.example.orliv.model.bookcases;
 import com.example.orliv.model.edition;
+import com.example.orliv.model.enums.Status;
 import com.example.orliv.repository.BookcaseRepository;
 import com.example.orliv.repository.EditionRepository;
 import com.example.orliv.repository.HistoryRepository;
@@ -28,11 +29,13 @@ public class HistoryService {
 
        if(readingHistory.getPages()> edition.getPages()){
           throw new RuntimeException();
-       }else{
-
+       }else if(readingHistory.getPages().equals(edition.getPages())){
+           bookcase.setStatus(Status.LIDOS);
+           bookcaseRepository.save(bookcase);
+           return historyRepository.save(readingHistory);
+        } else{
            return historyRepository.save(readingHistory);
        }
-
 
     }
 

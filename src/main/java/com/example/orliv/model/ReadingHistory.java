@@ -23,5 +23,4 @@ public class ReadingHistory {
     @JoinColumn(name = "bookcases_id")
     public bookcases bookcase;
 
-
 }
