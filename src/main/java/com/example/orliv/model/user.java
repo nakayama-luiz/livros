@@ -38,7 +38,7 @@ public class user {
     private String username;
 
     @OneToMany(mappedBy = "owner")
-    @JsonBackReference
+    //@JsonBackReference
     private List<bookcases> bookcasesList = new ArrayList<>();
 
     private String profilePic;

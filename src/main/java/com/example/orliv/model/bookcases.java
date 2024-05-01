@@ -44,8 +44,10 @@ public class bookcases {
     @Column(name = "rating", nullable = true)
     private Double rating;
 
+    @Column(name = "start_date")
     private LocalDate start;
 
+    @Column(name = "end_date")
     private LocalDate end;
 
     @OneToMany(mappedBy = "bookcase")
@@ -57,6 +59,8 @@ public class bookcases {
     @ManyToOne
     @JoinColumn(name = "editions_id")
     private edition editions;
+
+    private Long readPages = 0L;
 
 
 }

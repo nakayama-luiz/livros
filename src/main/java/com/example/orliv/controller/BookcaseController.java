@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/api/bookcase", consumes = "application/json", produces = "application/json")
 public class BookcaseController {
@@ -31,6 +33,11 @@ public class BookcaseController {
     @PutMapping
     public ResponseEntity<bookcases> update(@RequestBody bookcases estante){
         return ResponseEntity.status(HttpStatus.OK).body(bookcaseService.update(estante));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<bookcases> findByid(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.FOUND).body(bookcaseService.list(id));
     }
 
 }
