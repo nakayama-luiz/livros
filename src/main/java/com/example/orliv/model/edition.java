@@ -50,6 +50,7 @@ public class edition {
 
     @Column(name = "isbn") @NotBlank @NotNull
     @JsonProperty("ISBN")
+    @ISBN
     private String ISBN;
 
     @NotNull

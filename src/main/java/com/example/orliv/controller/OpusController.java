@@ -1,5 +1,6 @@
 package com.example.orliv.controller;
 
+import com.example.orliv.dto.opusDTO;
 import com.example.orliv.model.author;
 import com.example.orliv.model.opus;
 import com.example.orliv.service.OpusService;
@@ -39,10 +40,11 @@ public class OpusController {
                 .body(this.opusService.getAllOpus());
     }
 
-    @PostMapping("/{author_id}")
-    public ResponseEntity<opus> createOpus(@RequestBody opus opus, @PathVariable Long author_id){
+    @PostMapping
+    public ResponseEntity<opus> createOpus(@RequestBody opusDTO opus){
+       System.out.println(opus.getOpus().getTitle());
             return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(this.opusService.CreateOpus(opus, author_id));
+                    .body(this.opusService.CreateOpus(opus.getOpus(), opus.getAuthor_id()));
 
     }
 

@@ -5,9 +5,11 @@ import com.example.orliv.model.opus;
 import com.example.orliv.repository.AuthorRepository;
 import com.example.orliv.repository.OpusRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,16 +34,22 @@ public class OpusService {
 
         return opusRepository.save(opus);
     }
-    public opus CreateOpus(opus _opus, Long author_id) {
-        author author = authorRepository.findById(author_id).orElseThrow(
-                () -> new EntityNotFoundException("Author not found")
-        );
-        author.getOpus().add(_opus);
+    public opus CreateOpus(opus _opus, List<Long> author_ids) {
+        if(_opus.getTime() > LocalDate.now().getYear()){
+            throw new RuntimeException("compras");
+        }
 
-        _opus.getAuthor().add(author);
+        List<author> authores = new ArrayList<>();
 
-        System.out.println(_opus.getEra());
+        int n = 0;
+        for (Long authorId : author_ids) {
 
+            author author =  authorRepository.findById(authorId).orElseThrow();
+            authores.add(author);
+            authores.get(n).getOpus().add(_opus);
+            n++;
+        }
+        _opus.setAuthor(authores);
         return opusRepository.save(_opus);
 
     }

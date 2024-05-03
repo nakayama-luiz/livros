@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import lombok.AllArgsConstructor;
@@ -38,8 +39,9 @@ public class opus {
     @Enumerated(EnumType.STRING)
     private eras era = eras.AC;
 
-    @ManyToMany(mappedBy = "opus")
+    @ManyToMany(mappedBy = "opus", cascade = CascadeType.ALL)
     @NotNull
+    @NotEmpty
     private List<author> author = new ArrayList<>();
 
     @ManyToMany(mappedBy = "opuses")

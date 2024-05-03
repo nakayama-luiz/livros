@@ -40,7 +40,6 @@ public class user {
     @OneToMany(mappedBy = "owner")
     private List<bookcases> bookcasesList = new ArrayList<>();
 
-
     private String profilePic;
 
 
