@@ -28,9 +28,15 @@ public class BookcaseService {
 
     public bookcases createBookcase(bookcases bookcases, Long user_id){
 
+
         user user = userRepository.findById(user_id).orElseThrow(
                 ()-> new EntityNotFoundException("User not found")
         );
+
+        List<bookcases> lista= bookcaseRepository.findAllByOwner(user);
+        if(lista.isEmpty()){
+            throw new RuntimeException("pare de mentir");
+        }
         bookcases.setOwner(user);
         return bookcaseRepository.save(bookcases);
     }
