@@ -45,7 +45,7 @@ public class edition {
 
     @Enumerated(EnumType.STRING)
     @ElementCollection
-    @NotNull @NotBlank @NotEmpty
+    @NotNull @NotEmpty
     private List<language> language;
 
     @JsonProperty("ISBN")

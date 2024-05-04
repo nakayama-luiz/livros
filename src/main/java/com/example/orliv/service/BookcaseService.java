@@ -2,6 +2,7 @@ package com.example.orliv.service;
 
 import com.example.orliv.model.bookcases;
 import com.example.orliv.model.edition;
+import com.example.orliv.model.enums.Status;
 import com.example.orliv.model.user;
 import com.example.orliv.repository.BookcaseRepository;
 import com.example.orliv.repository.EditionRepository;
@@ -10,8 +11,11 @@ import io.swagger.v3.oas.annotations.servers.Server;
 import jakarta.persistence.EntityNotFoundException;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.swing.*;
 import java.util.List;
 
 @Service
@@ -34,9 +38,12 @@ public class BookcaseService {
         );
 
         List<bookcases> lista= bookcaseRepository.findAllByOwner(user);
-        if(lista.isEmpty()){
+
+
+        if(lista.get(0).getEditions().getOpuses().equals(bookcases.getEditions().getOpuses())){
             throw new RuntimeException("pare de mentir");
         }
+
         bookcases.setOwner(user);
         return bookcaseRepository.save(bookcases);
     }
@@ -64,5 +71,13 @@ public class BookcaseService {
         return bookcaseRepository.findById(id).orElseThrow(
                 ()-> new EntityNotFoundException("mentiras pra miom")
         );
+    }
+
+    public Page<bookcases> findUserBookcases(Pageable pageable, Long id, Status status){
+
+        user finded = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found"));
+
+        return bookcaseRepository.findByStatus(pageable, status, finded);
+
     }
 }

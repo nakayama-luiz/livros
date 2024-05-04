@@ -42,7 +42,7 @@ public class bookcases {
     private user owner;
 
     @Column(nullable = true)
-    private Boolean favorite;
+    private Boolean favorite = false;
 
     @Column(name = "rating", nullable = true)
     private Double rating;
@@ -60,12 +60,11 @@ public class bookcases {
     private Status status;
 
     @NotNull
-    @NotEmpty
     @ManyToOne
     @JoinColumn(name = "editions_id")
     private edition editions;
 
-    @Size(min = 0)
+    //@Size(min = 0)
     @JsonProperty("read_pages")
     @Column(name = "read_pages")
     private Long readPages = 0L;

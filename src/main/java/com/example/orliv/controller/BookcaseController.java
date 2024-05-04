@@ -1,7 +1,10 @@
 package com.example.orliv.controller;
 
 import com.example.orliv.model.bookcases;
+import com.example.orliv.model.enums.Status;
 import com.example.orliv.service.BookcaseService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +41,11 @@ public class BookcaseController {
     @GetMapping("/{id}")
     public ResponseEntity<bookcases> findByid(@PathVariable Long id){
         return ResponseEntity.status(HttpStatus.FOUND).body(bookcaseService.list(id));
+    }
+
+    @GetMapping
+    public ResponseEntity<Page<bookcases>> findUserBookcases(@RequestParam Long id, @RequestParam Status status, Pageable pageable){
+        return ResponseEntity.status(HttpStatus.FOUND).body(bookcaseService.findUserBookcases(pageable, id,status));
     }
 
 }
