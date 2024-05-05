@@ -1,0 +1,11 @@
+.login{
+    width: 100vw;
+    height: 70vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+   backdrop-filter: blue(20px); 
+}
+body{
+    background-image: url("https://static01.nyt.com/images/2022/10/31/opinion/30paul1/30paul1-superJumbo.jpg");
+}
