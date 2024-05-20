@@ -31,10 +31,6 @@ public class bookcases {
     @SequenceGenerator(allocationSize = 1, name = "gen_bookcase", sequenceName = "seq_bookcase")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-//
-//    @NotNull(message = "Name cannot be null")
-//    @NotBlank(message = "Blank names are not allowed")
-//    private String name;
 
     @ManyToOne
     @JsonBackReference
@@ -64,7 +60,6 @@ public class bookcases {
     @JoinColumn(name = "editions_id")
     private edition editions;
 
-    //@Size(min = 0)
     @JsonProperty("read_pages")
     @Column(name = "read_pages")
     private Long readPages = 0L;
