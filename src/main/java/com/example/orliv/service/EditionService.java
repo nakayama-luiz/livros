@@ -25,7 +25,6 @@ public class EditionService {
     public edition createEdition(edition edition){
 
         return editionRepository.save(edition);
-
     }
 
     public List<edition> all(){

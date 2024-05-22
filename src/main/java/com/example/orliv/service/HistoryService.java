@@ -28,7 +28,7 @@ public class HistoryService {
        edition edition = editionRepository.findById(bookcase.getEditions().getId()).orElseThrow();
 
        if(readingHistory.getPages()> edition.getPages()){
-          throw new RuntimeException();
+          throw new RuntimeException("Pages read could not excced the number of pages.");
        }else if(readingHistory.getPages().equals(edition.getPages())){
            bookcase.setStatus(Status.LIDOS);
            bookcaseRepository.save(bookcase);

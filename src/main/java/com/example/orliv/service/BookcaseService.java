@@ -1,6 +1,7 @@
 package com.example.orliv.service;
 
 import com.example.orliv.model.bookcases;
+import com.example.orliv.model.opus;
 import com.example.orliv.model.edition;
 import com.example.orliv.model.enums.Status;
 import com.example.orliv.model.user;
@@ -16,7 +17,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.swing.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class BookcaseService {
@@ -32,17 +35,32 @@ public class BookcaseService {
 
     public bookcases createBookcase(bookcases bookcases, Long user_id){
 
+        Set<Long> sem_maldade = new HashSet<>();
 
+        System.out.println(bookcases.getEditions().getId());
         user user = userRepository.findById(user_id).orElseThrow(
                 ()-> new EntityNotFoundException("User not found")
         );
 
-        List<bookcases> lista= bookcaseRepository.findAllByOwner(user);
-
-
-        if(lista.get(0).getEditions().getOpuses().equals(bookcases.getEditions().getOpuses())){
-            throw new RuntimeException("pare de mentir");
+        List<bookcases> userBookcases = bookcaseRepository.findAllByOwner(user);
+        for (bookcases existingBookcase : userBookcases) {
+            existingBookcase.getEditions().getOpuses().forEach(opus -> sem_maldade.add(opus.getId()));
         }
+
+
+        for (opus opus : bookcases.getEditions().getOpuses()) {
+            if (sem_maldade.contains(opus.getId())) {
+                throw new RuntimeException("A edição com a mesma opus já existe.");
+            }
+        }
+        for (bookcases existingBookcase : userBookcases) {
+
+            sem_maldade.add(existingBookcase.getId());
+//            if (existingBookcase.getEditions().getOpuses().equals(bookcases.getEditions().getOpuses())) {
+//                throw new RuntimeException("A edição com a mesma opus já existe.");
+//            }
+        }
+
 
         bookcases.setOwner(user);
         return bookcaseRepository.save(bookcases);

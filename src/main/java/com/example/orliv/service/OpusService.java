@@ -25,18 +25,13 @@ public class OpusService {
 
 
     public opus getOpusById(Long id){
-       opus opus = opusRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Obra não encontrada")
+        return opusRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Obra não encontrada")
        );
-       return opus;
     }
 
-    public opus createOpus(opus opus){
-
-        return opusRepository.save(opus);
-    }
     public opus CreateOpus(opus _opus, List<Long> author_ids) {
         if(_opus.getTime() > LocalDate.now().getYear()){
-            throw new RuntimeException("compras");
+            throw new RuntimeException("Invalid date.");
         }
 
         List<author> authores = new ArrayList<>();
