@@ -31,7 +31,10 @@ public class bookcases {
     @SequenceGenerator(allocationSize = 1, name = "gen_bookcase", sequenceName = "seq_bookcase")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-
+//
+//    @NotNull(message = "Name cannot be null")
+//    @NotBlank(message = "Blank names are not allowed")
+//    private String name;
 
     @ManyToOne
     @JsonBackReference
