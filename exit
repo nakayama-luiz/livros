@@ -1,0 +1,169 @@
+[33mcommit 080f342eb0dc343e98e6ce891f2a153e2d5b9d5b[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: nakayama-luiz <luizsantos.naka@gmail.com>
+Date:   Thu Jul 4 22:13:42 2024 -0300
+
+    finalmente
+
+[33mcommit 7a937b58bc8eb19aad2251c1e2f1b1aab0e2f250[m
+Author: nakayama-luiz <luizsantos.naka@gmail.com>
+Date:   Thu Jul 4 22:12:47 2024 -0300
+
+    finalmente
+
+[33mcommit 81cddf68e17b5de858f3ce0f940852592732ebb4[m
+Author: nakayama-luiz <luizsantos.naka@gmail.com>
+Date:   Thu Jul 4 21:58:56 2024 -0300
+
+    um novo começo
+
+[33mcommit 28bb57962de40ea9082e2feec2c5312435a678a3[m
+Author: nakayama-luiz <luizsantos.naka@gmail.com>
+Date:   Wed Jul 3 23:01:31 2024 -0300
+
+    um novo começo
+
+[33mcommit 0c67c1683e409ddec98984cdd475d4779481c7a7[m[33m ([m[1;31morigin/main[m[33m)[m
+Merge: b188255 1bcef9f
+Author: nakayama-luiz <luizsantos.naka@gmail.com>
+Date:   Tue May 21 21:17:24 2024 -0300
+
+    Merge remote-tracking branch 'origin/main'
+    
+    # Conflicts:
+    #       src/main/java/com/example/orliv/model/bookcases.java
+
+[33mcommit b188255c4274a44cc58ac5d729efcbbea201a112[m
+Author: nakayama-luiz <luizsantos.naka@gmail.com>
+Date:   Tue May 21 21:16:44 2024 -0300
+
+    bookcase opuses validation
+
+[33mcommit 1bcef9fb6d50c7303d09a10b45fc879447ad0a81[m
+Merge: 6cb7478 207e332
+Author: provavelmente <110038923+nakayama-luiz@users.noreply.github.com>
+Date:   Mon May 20 13:36:08 2024 -0300
+
+    Merge pull request #1 from nakayama-luiz/feature
+    
+    basic o auth setting GITHUB and Google
+
+[33mcommit 207e332604634d6196a4e4bc84108a53d41ba7b5[m[33m ([m[1;31morigin/feature[m[33m, [m[1;32mfeature[m[33m)[m
+Author: nakayama-luiz <luizsantos.naka@gmail.com>
+Date:   Mon May 20 13:11:51 2024 -0300
+
+    basic o auth setting GITHUB and Google
+
+[33mcommit 6cb74787a5ffc749d58c436746a7777f48e74673[m
+Author: nakayama-luiz <luizsantos.naka@gmail.com>
+Date:   Sun May 5 13:49:42 2024 -0300
+
+    apresenta-se o front-end
+
+[33mcommit 03b19e97b09b5d9f3bba50a4d5d0ac0659b146b2[m
+Author: nakayama-luiz <luizsantos.naka@gmail.com>
+Date:   Sat May 4 17:52:28 2024 -0300
+
+    paginação e ajuste nas validações.
+
+[33mcommit a44860d0f1a04e86168fe5ad935aa80c1a1c2bcc[m
+Author: nakayama-luiz <luizsantos.naka@gmail.com>
+Date:   Fri May 3 23:30:00 2024 -0300
+
+    valida-se edition e opus e inicia-se mais do JPA
+
+[33mcommit 92f867f290586f5d5515995886033d5190556e2c[m
+Author: nakayama-luiz <luizsantos.naka@gmail.com>
+Date:   Thu May 2 21:28:57 2024 -0300
+
+    adição de regras autor e suas obras.
+
+[33mcommit 3df29552d89dc39b3263690912cafa6366b461db[m
+Author: nakayama-luiz <luizsantos.naka@gmail.com>
+Date:   Wed May 1 15:27:09 2024 -0300
+
+    validações básica das colunas.
+
+[33mcommit d52a1ba821cbc3414aff2ecb80ef851de96b7e4c[m
+Author: nakayama-luiz <luizsantos.naka@gmail.com>
+Date:   Tue Apr 30 23:49:38 2024 -0300
+
+    historico de leitura arrumado.
+
+[33mcommit db75623d1d55c28b6511bb5561f50a6a0efd34d3[m
+Author: nakayama-luiz <luizsantos.naka@gmail.com>
+Date:   Mon Apr 29 13:28:29 2024 -0300
+
+    historico de leitura
+
+[33mcommit 9d7c75b652a867306ce0d99dc4a9bd7d27d61a83[m
+Author: nakayama-luiz <luizsantos.naka@gmail.com>
+Date:   Sat Apr 27 17:16:01 2024 -0300
+
+    agora o sistema tem estantes com livros
+
+[33mcommit a845cf12045a951d9b087d8afd0c117af1921d1b[m
+Author: nakayama-luiz <luizsantos.naka@gmail.com>
+Date:   Sat Apr 27 16:46:17 2024 -0300
+
+    antes de refatorar USERxEDITION
+
+[33mcommit 73a5f4da66c6cb9ebb5309800165e2fe640ef68f[m
+Author: nakayama-luiz <luizsantos.naka@gmail.com>
+Date:   Fri Apr 12 23:09:05 2024 -0300
+
+    ou a do homem contra o tribunal de contas.
+
+[33mcommit 21ca82b19c9ab79bbaef2de4fe0875a48d05f21f[m
+Author: nakayama-luiz <luizsantos.naka@gmail.com>
+Date:   Fri Apr 12 22:15:01 2024 -0300
+
+    A luta da edicao contra a obra
+
+[33mcommit 10da0242f2cb6c220a58ed593565429ded79c6f2[m
+Author: nakayama-luiz <luizsantos.naka@gmail.com>
+Date:   Sun Mar 17 21:33:44 2024 -0300
+
+    A vida é um conto narrado por um idiota, cheio de som e fúria, e que nada significa.
+
+[33mcommit 7116299fb5eef6c146e3691c38ad5a952bd1b5de[m
+Author: nakayama-luiz <luizsantos.naka@gmail.com>
+Date:   Sat Mar 16 23:15:18 2024 -0300
+
+    Edition, Publisher, User, Bookcases
+
+[33mcommit 2757e71e0c89df08a3df8a05adbb956566385675[m
+Author: nakayama-luiz <luizsantos.naka@gmail.com>
+Date:   Sat Mar 16 21:28:35 2024 -0300
+
+    create author
+
+[33mcommit 09129042d310e2fc723473ccf67fd2e76e442664[m
+Author: nakayama-luiz <luizsantos.naka@gmail.com>
+Date:   Sat Mar 16 19:28:36 2024 -0300
+
+    CREATE opus X author
+
+[33mcommit 062c8ec4a645adf212d74f51069065fdd93d412e[m
+Merge: 514bec2 531c006
+Author: nakayama-luiz <luizsantos.naka@gmail.com>
+Date:   Thu Mar 14 22:47:49 2024 -0300
+
+    Merge branch 'main' of https://github.com/nakayama-luiz/livros
+
+[33mcommit 514bec2f6651939a23b6d6ef400d6bfda5c9acee[m
+Author: nakayama-luiz <luizsantos.naka@gmail.com>
+Date:   Thu Mar 14 22:44:51 2024 -0300
+
+    edition X opus
+
+[33mcommit 531c0061404f19c5a03408e3729c4a029844f1e7[m
+Author: provavelmente <110038923+nakayama-luiz@users.noreply.github.com>
+Date:   Thu Mar 14 22:09:36 2024 -0300
+
+    Create README.md
+
+[33mcommit 960e0fd849001ae7774070004e79c0cefb9e4a10[m
+Author: nakayama-luiz <luizsantos.naka@gmail.com>
+Date:   Thu Mar 14 22:05:31 2024 -0300
+
+    main domain classes

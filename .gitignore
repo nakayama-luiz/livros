@@ -32,11 +32,9 @@ out/
 /dist/
 /nbdist/
 /.nb-gradle/
-
 ### ANGULAR ###
-!**/src/orvil/node_modules
+!**/src/orvil/node_modules/
 
 ### VS Code ###
 .vscode/
 
-/
