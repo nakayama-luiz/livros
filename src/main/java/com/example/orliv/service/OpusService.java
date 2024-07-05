@@ -29,6 +29,11 @@ public class OpusService {
        );
     }
 
+    public List<opus> getOpusByAuthor(Long author_id){
+        System.out.println(author_id);
+        return opusRepository.findAllOpusByAuthor(author_id);
+    }
+
     public opus CreateOpus(opus _opus, List<Long> author_ids) {
         if(_opus.getTime() > LocalDate.now().getYear()){
             throw new RuntimeException("Invalid date.");

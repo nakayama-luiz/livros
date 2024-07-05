@@ -25,7 +25,6 @@ public class AuthorController {
         return ResponseEntity.status(HttpStatus.OK).body(authorService.getAuthorById(id));
 
     }
-
     @PostMapping
     public ResponseEntity<author> createAuthor(@RequestBody author author){
             return ResponseEntity.status(HttpStatus.CREATED).body(authorService.createAuthor(author));

@@ -16,12 +16,12 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration
 @EnableWebSecurity
 public class SpringSecurityConfig {
+
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/").permitAll();
-                    auth.requestMatchers("/favicon.ico").permitAll();
+                    auth.requestMatchers("/api/opus/author/").permitAll();
                     auth.anyRequest().permitAll();
                 })
                 .formLogin(withDefaults())

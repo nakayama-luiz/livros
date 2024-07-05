@@ -32,6 +32,12 @@ public class OpusController {
                 .body(this.opusService.getOpusById(id));
     }
 
+    @GetMapping("/author/{id}")
+    public ResponseEntity<List<opus>> getOpusByAuthor(@PathVariable("id") Long id){
+        System.out.println(id);
+        return ResponseEntity.status(HttpStatus.OK).body(this.opusService.getOpusByAuthor(id));
+    }
+
 
     @GetMapping("/opuses")
     public ResponseEntity<List<opus>> getAllOpus(){
