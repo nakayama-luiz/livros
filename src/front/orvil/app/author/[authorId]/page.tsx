@@ -18,7 +18,7 @@ export default async function main({
   const authorData = await getAuthorData(params.authorId);
   console.log(authorData);
   return (
-    <div className="">
+    <div >
       <div
       // style={{
       //   justifyContent: "center",
@@ -26,7 +26,7 @@ export default async function main({
       //   display: "flex",
       // }}
       >
-        <div className="grid grid-rows-3 grid-flow-col gap-4">
+        {/* <div className="grid grid-rows-3 grid-flow-col gap-4">
           <div
             style={{
               justifyContent: "center",
@@ -44,29 +44,22 @@ export default async function main({
           <div className="row-span-2 col-span-2">
             <p style={{ padding: 10 }}>{authorData.biography}</p>
           </div>
-        </div>
-
-
+        </div> */}
 
         <div className="grid grid-rows-3 grid-flow-col gap-4">
-
           <div className="row-span-3 ...">
-<Image isBlurred width={300}  src={authorData.picture}></Image>
+            <Image isBlurred width={300} src={authorData.picture}></Image>
+            <label htmlFor="">{authorData.vulgos }</label>
           </div>
 
           <div className="col-span-2 ...">
-          <h1 style={{ fontSize: 30 }}>{authorData.name}</h1>
+            <h1 style={{ fontSize: 30 }}>{authorData.name}</h1>
           </div>
 
           <div className="row-span-2 col-span-2 ...">
-
-            <p style={{  }}>{authorData.biography}</p>
+            <p style={{}}>{authorData.biography}</p>
           </div>
-
         </div>
-
-
-
       </div>
     </div>
   );

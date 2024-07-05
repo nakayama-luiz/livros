@@ -35,9 +35,9 @@ public class opus {
     @NotNull
     private Long time;
 
-    @Column(name = "era", nullable = false, length = 2, columnDefinition = "DC")
+    @Column(name = "era", nullable = false, length = 2)
     @Enumerated(EnumType.STRING)
-    private eras era = eras.AC;
+    private eras era;
 
     @ManyToMany(mappedBy = "opus", cascade = CascadeType.ALL)
     @NotNull

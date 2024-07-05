@@ -22,9 +22,8 @@ public class SpringSecurityConfig {
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/").permitAll();
                     auth.requestMatchers("/favicon.ico").permitAll();
-                    auth.anyRequest().authenticated();
+                    auth.anyRequest().permitAll();
                 })
-                .oauth2Login(withDefaults())
                 .formLogin(withDefaults())
                 .build();
     }
