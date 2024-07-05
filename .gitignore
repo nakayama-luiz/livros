@@ -34,7 +34,9 @@ out/
 /.nb-gradle/
 
 ### ANGULAR ###
-!**/src/front/**/nodemodules/
+!**/src/orvil/node_modules
 
 ### VS Code ###
 .vscode/
+
+/
