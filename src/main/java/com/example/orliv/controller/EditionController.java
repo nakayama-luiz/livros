@@ -1,5 +1,6 @@
 package com.example.orliv.controller;
 
+import com.example.orliv.dto.poggersDTO;
 import com.example.orliv.model.edition;
 import com.example.orliv.model.opus;
 import com.example.orliv.service.EditionService;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/api/edition")
@@ -35,5 +37,10 @@ public class EditionController {
     @GetMapping
     public ResponseEntity<List<edition>> findAll(){
         return ResponseEntity.status(HttpStatus.OK).body(this.editionService.all());
+    }
+
+    @GetMapping("/author/{id}")
+    public ResponseEntity<List<Map<String, Object>>> findAllEditionByAuthor(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(this.editionService.findAllEditionsByAuthor(id));
     }
 }

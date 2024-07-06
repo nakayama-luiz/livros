@@ -1,5 +1,8 @@
 import { author } from "@/types/author";
+import { IAuthorEditionCard } from "@/types/AuthorEditionCard";
 import { Image } from "@nextui-org/image";
+import { Card, CardHeader, CardBody } from "@nextui-org/card";
+import { wrap } from "module";
 
 async function getAuthorData(params: number): Promise<author> {
   const response = await fetch(`http://localhost:8081/api/author/${params}`, {
@@ -10,15 +13,28 @@ async function getAuthorData(params: number): Promise<author> {
   return await response.json();
 }
 
+async function getAuthorEditions(
+  params: number
+): Promise<IAuthorEditionCard[]> {
+  const response = await fetch(
+    `http://localhost:8081/api/edition/author/${params}`,
+    { cache: "no-cache" }
+  );
+  console.log(response.body);
+  return await response.json();
+}
+
 export default async function main({
   params,
 }: {
   params: { authorId: number };
 }) {
   const authorData = await getAuthorData(params.authorId);
+  const authorEditions = await getAuthorEditions(params.authorId);
   console.log(authorData);
+  console.log(authorEditions);
   return (
-    <div >
+    <div>
       <div
       // style={{
       //   justifyContent: "center",
@@ -49,7 +65,7 @@ export default async function main({
         <div className="grid grid-rows-3 grid-flow-col gap-4">
           <div className="row-span-3 ...">
             <Image isBlurred width={300} src={authorData.picture}></Image>
-            <label htmlFor="">{authorData.vulgos }</label>
+            <label htmlFor="">{authorData.vulgos}</label>
           </div>
 
           <div className="col-span-2 ...">
@@ -60,6 +76,54 @@ export default async function main({
             <p style={{}}>{authorData.biography}</p>
           </div>
         </div>
+        <hr />
+        <br />
+
+        {/* <div>
+          {authorEditions.map((ele) => (
+            <div>
+              <Card className="py-4">
+                <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
+                  <p className="text-tiny uppercase font-bold">Daily Mix</p>
+                  <small className="text-default-500">{ele.authorname}</small>
+                  <h4 className="font-bold text-large">{ele.editiontitle}</h4>
+                </CardHeader>
+                <CardBody className="overflow-visible py-2">
+                  <Image
+                    alt="Card background"
+                    className="object-cover rounded-xl"
+                    src={ele.cover}
+                    width={100}
+                  />
+                </CardBody>
+              </Card>
+            </div>
+          ))}
+        </div> */}
+
+
+<div className="cards-container" style={{display: 'flex', flexWrap: 'wrap', gap: 10}}>
+  {authorEditions.map((ele) => (
+    <div className="card-wrapper" style={{display: 'inline-block', width: 'auto', maxWidth: 300}}>
+      <Card className="py-4 card-content">
+        <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
+          <p className="text-tiny uppercase font-bold">Daily Mix</p>
+          <small className="text-default-500">{ele.authorname}</small>
+          <h4 className="font-bold text-large">{ele.editiontitle}</h4>
+        </CardHeader>
+        <CardBody className="overflow-visible py-2">
+          <Image
+            alt="Card background"
+            className="object-cover rounded-xl"
+            src={ele.cover}
+            width={100}
+          />
+        </CardBody>
+      </Card>
+    </div>
+  ))}
+</div>
+
       </div>
     </div>
   );

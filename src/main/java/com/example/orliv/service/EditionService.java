@@ -1,6 +1,7 @@
 package com.example.orliv.service;
 
 
+import com.example.orliv.dto.poggersDTO;
 import com.example.orliv.model.edition;
 import com.example.orliv.model.opus;
 import com.example.orliv.repository.EditionRepository;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class EditionService {
@@ -29,6 +31,11 @@ public class EditionService {
 
     public List<edition> all(){
         return editionRepository.findAll();
+    }
+
+    public List<Map<String, Object>> findAllEditionsByAuthor(Long id)
+    {
+        return editionRepository.findAllByAuthor(id);
     }
 
 

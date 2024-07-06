@@ -42,9 +42,8 @@ public class author {
     )
     private List<opus> opus = new ArrayList<>();
 
-    @Column(name = "biography")
+    @Column(name = "biography", columnDefinition = "TEXT")
     private String biography;
-
 
     private String picture;
 }

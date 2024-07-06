@@ -1,5 +1,6 @@
 package com.example.orliv.model;
 
+import com.example.orliv.dto.poggersDTO;
 import com.example.orliv.model.enums.language;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
