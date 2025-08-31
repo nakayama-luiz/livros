@@ -1,4 +1,4 @@
-package com.example.orliv.model;
+package com.example.orliv.domain;
 
 
 import jakarta.persistence.*;
@@ -19,7 +19,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "human")
-public class user {
+public class User {
     @Id
     @SequenceGenerator(allocationSize = 1, name = "gen_user", sequenceName = "seq_user", initialValue = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -36,9 +36,8 @@ public class user {
     private String username;
 
     @OneToMany(mappedBy = "owner")
-    private List<bookcases> bookcasesList = new ArrayList<>();
+    private List<Bookcases> bookcasesList = new ArrayList<>();
 
     private String profilePic;
-
 
 }

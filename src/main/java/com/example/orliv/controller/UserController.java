@@ -1,31 +1,30 @@
 package com.example.orliv.controller;
 
 
-import com.example.orliv.model.user;
+import com.example.orliv.domain.User;
 import com.example.orliv.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/user")
-public class UserController {
-
+public class UserController extends GenericCrudController<User, Long> {
     private final UserService userService;
 
-    public UserController(UserService userService) {
+    protected UserController(UserService service, UserService userService) {
+        super(service);
         this.userService = userService;
     }
 
-    @PostMapping
-    public ResponseEntity<user> create(@RequestBody user user){
-        return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(user));
-    }
 
-    @GetMapping("/userByname")
-    public ResponseEntity<List<user>> getUserByName(@RequestParam String name){
+    @GetMapping("/name")
+    public ResponseEntity<List<User>> getUserByName(@RequestParam String name) {
             return ResponseEntity.status(HttpStatus.FOUND).body(userService.findByName(name));
     }
 }

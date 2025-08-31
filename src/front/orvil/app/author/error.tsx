@@ -1,6 +1,5 @@
 "use client";
 
-import { edgeServerPages } from "next/dist/build/webpack/plugins/pages-manifest-plugin";
 import { useEffect } from "react";
 
 export default function Error({

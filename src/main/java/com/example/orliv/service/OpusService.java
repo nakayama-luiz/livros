@@ -1,60 +1,57 @@
 package com.example.orliv.service;
 
-import com.example.orliv.model.author;
-import com.example.orliv.model.opus;
+import com.example.orliv.domain.Author;
+import com.example.orliv.domain.Opus;
+import com.example.orliv.domain.OpusAuthor;
+import com.example.orliv.dto.createOpusDTO;
 import com.example.orliv.repository.AuthorRepository;
+import com.example.orliv.repository.OpusAuthorRepository;
 import com.example.orliv.repository.OpusRepository;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
-public class OpusService {
+public class OpusService extends GenericCrudService<Opus, Long> {
+    private final AuthorRepository authorRepository;
+    private final OpusAuthorRepository opusAuthorRepository;
 
-
-    @Autowired
-    private OpusRepository opusRepository;
-
-    @Autowired
-    private AuthorRepository authorRepository;
-
-
-    public opus getOpusById(Long id){
-        return opusRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Obra não encontrada")
-       );
+    public OpusService(OpusRepository repository, AuthorRepository authorRepository,
+                       OpusAuthorRepository opusAuthorRepository) {
+        super(repository);
+        this.authorRepository = authorRepository;
+        this.opusAuthorRepository = opusAuthorRepository;
     }
 
-    public List<opus> getOpusByAuthor(Long author_id){
-        System.out.println(author_id);
-        return opusRepository.findAllOpusByAuthor(author_id);
+    public List<Opus> findOpusByAuthor(Long authorId) {
+        return getRepository(OpusRepository.class).findAllOpusByAuthor(authorId);
     }
 
-    public opus CreateOpus(opus _opus, List<Long> author_ids) {
-        if(_opus.getTime() > LocalDate.now().getYear()){
+    public Opus createOpus(createOpusDTO opusDTO) {
+        Opus opus = opusDTO.getOpus();
+        List<Long> authorsIds = opusDTO.getAuthorsIds();
+
+        if (opus.getTime() > LocalDate.now().getYear()) {
             throw new RuntimeException("Invalid date.");
         }
 
-        List<author> authores = new ArrayList<>();
+        final Set<Author> authors = authorRepository.findAllToSetById(authorsIds);
 
-        int n = 0;
-        for (Long authorId : author_ids) {
-
-            author author =  authorRepository.findById(authorId).orElseThrow();
-            authores.add(author);
-            authores.get(n).getOpus().add(_opus);
-            n++;
+        if (authors.isEmpty()) {
+            throw new EntityNotFoundException("None authors were found.");
         }
-        _opus.setAuthor(authores);
-        return opusRepository.save(_opus);
 
-    }
-    public List<opus> getAllOpus(){
-        return opusRepository.findAll();
+        Opus saved = getRepository(OpusRepository.class).save(opus);
+
+        opusAuthorRepository.saveAll(authors.stream()
+                .map(author -> new OpusAuthor(opus, author))
+                .collect(Collectors.toSet()));
+
+        return saved;
     }
 
 }

@@ -1,30 +1,24 @@
 package com.example.orliv.service;
-import com.example.orliv.model.bookcases;
-import com.example.orliv.model.user;
-import com.example.orliv.repository.BookcaseRepository;
+
+import com.example.orliv.domain.User;
 import com.example.orliv.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class UserService {
+public class UserService extends GenericCrudService<User, Long> {
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private BookcaseRepository bookcaseRepository;
-
-
-    public user createUser(user _user){
-        user novo = userRepository.save(_user);
-
-        return novo;
+    public UserService(UserRepository repository) {
+        super(repository);
     }
 
-    public List<user> findByName(String name){
-        return userRepository.findAllByUsername(name);
+    public List<User> findByName(String name) {
+        return this.getRepository(UserRepository.class).findAllByUsername(name);
+    }
+
+    @Override
+    public void afterCreate(User user) {
+
     }
 }

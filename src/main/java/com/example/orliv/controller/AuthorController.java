@@ -1,37 +1,19 @@
 package com.example.orliv.controller;
 
-import com.example.orliv.model.author;
-import com.example.orliv.model.opus;
+import com.example.orliv.domain.Author;
 import com.example.orliv.service.AuthorService;
-import jakarta.persistence.EntityManager;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import javax.swing.text.html.parser.Entity;
-import java.util.List;
+import com.example.orliv.service.CrudService;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/author")
-public class AuthorController {
-
-    @Autowired
-    private AuthorService authorService;
-
-
-    @GetMapping("/{id}")
-    public ResponseEntity<author> getAuthorById(@PathVariable Long id){
-        return ResponseEntity.status(HttpStatus.OK).body(authorService.getAuthorById(id));
-
-    }
-    @PostMapping
-    public ResponseEntity<author> createAuthor(@RequestBody author author){
-            return ResponseEntity.status(HttpStatus.CREATED).body(authorService.createAuthor(author));
+public class AuthorController extends GenericCrudController<Author, Long> {
+    protected AuthorController(CrudService<Author, Long> service) {
+        super(service);
     }
 
-    @PutMapping
-    public ResponseEntity<author> upateAuthor(@RequestBody author author){
-        return ResponseEntity.status(HttpStatus.CREATED).body(authorService.updateAuthor(author));
+    public void mentir() {
+        getService(AuthorService.class).comprar();
     }
 }

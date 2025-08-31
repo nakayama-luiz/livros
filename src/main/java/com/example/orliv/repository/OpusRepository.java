@@ -1,20 +1,18 @@
 package com.example.orliv.repository;
 
-import com.example.orliv.model.opus;
-import org.springframework.data.domain.Sort;
+import com.example.orliv.domain.Opus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface OpusRepository extends JpaRepository<opus, Long> {
+public interface OpusRepository extends JpaRepository<Opus, Long> {
 
-
-    @Query(value = "select o.* from opus o inner join opus_author oa on oa.opus_id = o.id inner join author a on a.id = oa.author_id where a.id = ?", nativeQuery = true)
-//    @Query("select o.title, o.time from Opus o " +
-//        "inner join OpusAuthor oa on oa.opus.id = o.id " +
-//        "inner join Author a on a.id = oa.author.id " +
-//        "where a.id = ?1")
-    List<opus> findAllOpusByAuthor(Long author);
+    @Query("SELECT o FROM Opus o " +
+            " INNER JOIN OpusAuthor oa on oa.opus = o" +
+            " INNER JOIN oa.author a" +
+            " WHERE a.id = :author_id")
+    List<Opus> findAllOpusByAuthor(@Param("author_id") Long author_id);
 
 }

@@ -1,42 +1,26 @@
 package com.example.orliv.controller;
 
-import com.example.orliv.dto.poggersDTO;
-import com.example.orliv.model.edition;
-import com.example.orliv.model.opus;
+import com.example.orliv.domain.Edition;
 import com.example.orliv.service.EditionService;
-import com.example.orliv.service.OpusService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/api/edition")
-public class EditionController {
+public class EditionController extends GenericCrudController<Edition, Long> {
 
     private final EditionService editionService;
 
-    private final OpusService opusService;
-
-    public EditionController(EditionService editionService, OpusService opusService) {
+    public EditionController(EditionService editionService) {
+        super(editionService);
         this.editionService = editionService;
-        this.opusService = opusService;
-    }
-
-
-    @PostMapping
-    public ResponseEntity<edition> aVoid(@RequestBody edition edition){
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(this.editionService.createEdition(edition));
-
-    }
-
-    @GetMapping
-    public ResponseEntity<List<edition>> findAll(){
-        return ResponseEntity.status(HttpStatus.OK).body(this.editionService.all());
     }
 
     @GetMapping("/author/{id}")

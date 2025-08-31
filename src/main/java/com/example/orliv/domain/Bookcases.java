@@ -1,22 +1,16 @@
-package com.example.orliv.model;
+package com.example.orliv.domain;
 
-import com.example.orliv.model.enums.Status;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.annotation.Nullable;
+import com.example.orliv.domain.enums.Status;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.cglib.core.Local;
+import org.apache.commons.lang.math.NumberUtils;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -25,26 +19,24 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "bookcase")
-public class bookcases {
+public class Bookcases {
 
     @Id
     @SequenceGenerator(allocationSize = 1, name = "gen_bookcase", sequenceName = "seq_bookcase")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_bookcase")
     private Long id;
-//
-//    @NotNull(message = "Name cannot be null")
-//    @NotBlank(message = "Blank names are not allowed")
-//    private String name;
+
+    @NotBlank(message = "Blank names are not allowed")
+    private String name;
 
     @ManyToOne
-    @JsonBackReference
     @JoinColumn(name = "user_id")
-    private user owner;
+    private User owner;
 
-    @Column(nullable = true)
-    private Boolean favorite = false;
+    @Column(name = "favorite")
+    private Boolean favorite = Boolean.FALSE;
 
-    @Column(name = "rating", nullable = true)
+    @Column(name = "rating")
     private Double rating;
 
     @Column(name = "start_date")
@@ -62,12 +54,10 @@ public class bookcases {
     @NotNull
     @ManyToOne
     @JoinColumn(name = "editions_id")
-    private edition editions;
+    private Edition editions;
 
-    //@Size(min = 0)
-    @JsonProperty("read_pages")
     @Column(name = "read_pages")
-    private Long readPages = 0L;
+    private Long readPages = NumberUtils.LONG_ZERO;
 
 
 }

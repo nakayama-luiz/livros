@@ -1,7 +1,7 @@
 package com.example.orliv.controller;
 
 
-import com.example.orliv.model.ReadingHistory;
+import com.example.orliv.domain.ReadingHistory;
 import com.example.orliv.service.HistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

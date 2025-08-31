@@ -1,6 +1,8 @@
-export interface IAuthorEditionCard{
-    editiontitle: string
-    publishername: string
-    cover: string
-    authorname: string
+export interface IAuthorEditionCard {
+  editiontitle: string;
+  publishername: string;
+  cover: string;
+  authorname: string;
+  isbn: string;
+  language: string;
 }

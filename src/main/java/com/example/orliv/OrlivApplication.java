@@ -1,16 +1,30 @@
 package com.example.orliv;
 
-import jakarta.persistence.Table;
+import com.example.orliv.config.ConfigMaster;
+import com.example.orliv.config.DevConfig;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import java.io.*;
 
 @SpringBootApplication
-public class OrlivApplication {
-	public static void main(String[] args) throws IOException  {
+public class OrlivApplication implements CommandLineRunner {
+
+
+	@Autowired
+	private ConfigMaster configMaster;
+
+
+	public static void main(String[] args) {
 
 
         SpringApplication.run(OrlivApplication.class, args);
+	}
+
+	@Override
+	public void run(String[] args) {
+		this.configMaster = new DevConfig();
+		this.configMaster.run();
 	}
 
 }

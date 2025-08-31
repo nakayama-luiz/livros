@@ -1,3 +1,3 @@
-export default function main(){
-    return <>Compras</>
+export default function main() {
+  return <>Compras</>;
 }

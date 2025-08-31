@@ -1,7 +1,7 @@
 package com.example.orliv.repository;
 
-import com.example.orliv.model.publisher;
+import com.example.orliv.domain.Publisher;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PublisherRepository extends JpaRepository<publisher, Long> {
+public interface PublisherRepository extends JpaRepository<Publisher, Long> {
 }

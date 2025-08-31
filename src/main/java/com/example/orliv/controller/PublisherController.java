@@ -1,29 +1,21 @@
 package com.example.orliv.controller;
 
 
-import com.example.orliv.model.publisher;
+import com.example.orliv.domain.Publisher;
 import com.example.orliv.service.PublisherService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/publisher")
-public class PublisherController {
-
-
-    private final PublisherService publisherService;
+public class PublisherController extends GenericCrudController<Publisher, Long> {
 
     public PublisherController(PublisherService publisherService) {
-        this.publisherService = publisherService;
+        super(publisherService);
     }
 
-    @PostMapping
-    public ResponseEntity<publisher> createPublisher(@RequestBody publisher publisher){
-       return ResponseEntity.status(HttpStatus.CREATED).body(this.publisherService.createPublisher(publisher));
+    public void mentiras() {
+        getService(PublisherService.class).comprar();
     }
+
 }

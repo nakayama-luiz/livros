@@ -1,39 +1,27 @@
 package com.example.orliv.service;
 
-import com.example.orliv.model.author;
-import com.example.orliv.model.opus;
-import com.example.orliv.repository.AuthorRepository;
-import jakarta.persistence.EntityNotFoundException;
-import org.hibernate.annotations.DynamicInsert;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.orliv.domain.Author;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
-import javax.swing.*;
-import java.util.List;
-
 @Service
-public class AuthorService {
-    @Autowired
-    private AuthorRepository authorRepository;
+public class AuthorService extends GenericCrudService<Author, Long> {
 
-
-    public author getAuthorById(Long id){
-        return authorRepository.findById(id).orElseThrow(
-                ()-> new EntityNotFoundException("Author not found")
-        );
+    public AuthorService(CrudRepository<Author, Long> repository) {
+        super(repository);
     }
 
-
-    public author createAuthor(author author){
-        if(author.getVulgos().isEmpty()){
-           author.getVulgos().add("default");
+    @Override
+    public Author create(Author author) {
+        if (author.getVulgos().isEmpty()) {
+            author.getVulgos().add(author.getName());
         }
-        return authorRepository.save(author);
 
+        return this.getCrudRepository().save(author);
     }
 
-    public author updateAuthor(author author){
-        return authorRepository.save(author);
+    public void comprar() {
+
     }
 
 }

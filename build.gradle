@@ -25,22 +25,28 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'org.postgresql:postgresql'
-	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	// https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui
-	implementation 'org.springdoc:springdoc-openapi-ui:1.7.0'
-	// https://mvnrepository.com/artifact/com.opencsv/opencsv
+
+	compileOnly("org.projectlombok:lombok:1.18.38")
+	annotationProcessor("org.projectlombok:lombok:1.18.38")
+
+	testCompileOnly("org.projectlombok:lombok:1.18.38")
+	testAnnotationProcessor("org.projectlombok:lombok:1.18.38")
 
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation("org.flywaydb:flyway-core:11.10.0")
 	testImplementation 'org.springframework.security:spring-security-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
-
-
+	runtimeOnly("org.flywaydb:flyway-database-postgresql:11.10.0")
+	implementation 'org.apache.solr:solr-solrj:8.11.2'
+	implementation 'org.eclipse.jetty:jetty-client:11.0.15'
+	implementation("org.eclipse.jetty:jetty-io:12.0.23")
+	implementation("com.github.ben-manes.caffeine:caffeine:3.1.8")
+	implementation("org.springframework.data:spring-data-redis:3.5.2")
+	implementation("redis.clients:jedis:5.0.2")
 
 }
 
