@@ -11,8 +11,4 @@ public class PublisherService extends GenericCrudService<Publisher, Long> {
         super(repository);
     }
 
-    public void comprar() {
-
-    }
-
 }

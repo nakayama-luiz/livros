@@ -17,8 +17,4 @@ public class UserService extends GenericCrudService<User, Long> {
         return this.getRepository(UserRepository.class).findAllByUsername(name);
     }
 
-    @Override
-    public void afterCreate(User user) {
-
-    }
 }

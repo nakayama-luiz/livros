@@ -14,8 +14,4 @@ public class PublisherController extends GenericCrudController<Publisher, Long> 
         super(publisherService);
     }
 
-    public void mentiras() {
-        getService(PublisherService.class).comprar();
-    }
-
 }
