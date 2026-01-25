@@ -26,5 +26,9 @@ public class OpusEdition {
     @JoinColumn(name = "opus_id")
     @ManyToOne
     private Opus opus;
-    
+
+    public OpusEdition(Edition edition, Opus opus) {
+        this.edition = edition;
+        this.opus = opus;
+    }
 }

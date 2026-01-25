@@ -2,7 +2,6 @@ package com.example.orliv.service;
 
 import com.example.orliv.domain.Bookcases;
 import com.example.orliv.domain.Edition;
-import com.example.orliv.domain.Opus;
 import com.example.orliv.domain.User;
 import com.example.orliv.domain.enums.Status;
 import com.example.orliv.repository.BookcaseRepository;
@@ -30,24 +29,23 @@ public class BookcaseService {
 
         Set<Long> sem_maldade = new HashSet<>();
 
-        System.out.println(bookcases.getEditions().getId());
         User user = userRepository.findById(user_id).orElseThrow(
                 ()-> new EntityNotFoundException("User not found")
         );
 
         List<Bookcases> userBookcases = bookcaseRepository.findAllByOwner(user);
 
-        userBookcases.forEach(existingBookcase ->
-                existingBookcase.getEditions().getOpuses().forEach(opus -> sem_maldade.add(opus.getId()))
-        );
-
-        List<Opus> games = bookcases.getEditions().getOpuses()
-                .stream().filter(opus -> sem_maldade.contains(opus.getId()))
-                .toList();
-
-        if (!games.isEmpty()) {
-            throw new IllegalArgumentException("Inaceitável");
-        }
+//        userBookcases.forEach(existingBookcase ->
+//                existingBookcase.getEditions().getOpuses().forEach(opus -> sem_maldade.add(opus.getId()))
+//        );
+//
+//        List<Opus> games = bookcases.getEditions().getOpuses()
+//                .stream().filter(opus -> sem_maldade.contains(opus.getId()))
+//                .toList();
+//
+//        if (!games.isEmpty()) {
+//            throw new IllegalArgumentException("Inaceitável");
+//        }
 
         for (Bookcases existingBookcase : userBookcases) {
             sem_maldade.add(existingBookcase.getId());

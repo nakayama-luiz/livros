@@ -1,6 +1,7 @@
 package com.example.orliv.domain;
 
 import com.example.orliv.domain.enums.Language;
+import com.example.orliv.dto.EditionRequestDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -14,8 +15,9 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.ISBN;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Entity
 @Getter
@@ -30,21 +32,12 @@ public class Edition {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_edition")
     private Long id;
 
-    @ManyToMany
-    @NotNull
-    @JoinTable(
-            name = "editions_opuses",
-            joinColumns = @JoinColumn(name = "edition_id"),
-            inverseJoinColumns = @JoinColumn(name = "opus_id")
-    )
-    private List<Opus> opuses = new ArrayList<>();
-
     @Column(name = "title")
     @NotNull @NotBlank
     private String title;
 
     @Enumerated(EnumType.STRING)
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.LAZY)
     @NotNull @NotEmpty
     private List<Language> language;
 
@@ -75,4 +68,18 @@ public class Edition {
     @NotNull
     private Publisher publisher;
 
+    public Edition(EditionRequestDTO requestDTO) {
+        if (Objects.isNull(requestDTO)) return;
+
+        this.title = requestDTO.getEditionTitle();
+        this.language = requestDTO.getLanguages();
+        this.ISBN = requestDTO.getIsbn();
+        this.pages = requestDTO.getPages();
+        this.publicationDate = requestDTO.getPublicationDate();
+        this.synopsis = requestDTO.getSynopsis();
+        this.cover = requestDTO.getCover();
+        this.publisher = Optional.ofNullable(requestDTO.getPublisher())
+                .map(p -> new Publisher(p.getId(), p.getName(), p.getDescription()))
+                .orElse(new Publisher());
+    }
 }

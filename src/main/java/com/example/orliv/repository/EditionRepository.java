@@ -1,29 +1,29 @@
 package com.example.orliv.repository;
 
 import com.example.orliv.domain.Edition;
+import com.example.orliv.dto.EditionResponseDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Map;
 
+@Repository
 public interface EditionRepository extends JpaRepository<Edition, Long> {
 
-    @Query(value = """
-            select distinct e.edition_title as editionTitle, p.name as publisherName, a.name as authorName, e.cover as cover,el."language", e.isbn
-            from edition e
-                inner join editions_opuses eo on eo.edition_id = e.id
-                inner join publisher p on p.id = e.publisher_id
-                inner join opus o on o.id = eo.opus_id
-                inner join opus_author oa on oa.opus_id = o.id
-                inner join author a on oa.author_id = a.id
-                left join edition_language el on el.edition_id = e.id
-            where a.id = :authorId
-            """, nativeQuery = true)
-    List<Map<String, Object>> findAllByAuthorId(Long authorId);
-
-    @Query("select e from edition e inner join e.publisher p where p.id :publisherId")
-    List<Edition> findAllByPublisher(@Param("publisherId") Long publisherId);
+    @Query("""
+                select distinct new com.example.orliv.dto.EditionResponseDTO(
+                    e.title, p.name, a.name,
+                    e.cover, e.ISBN, o.time
+                )
+                from Edition e
+                join e.publisher p
+                join OpusEdition oe on oe.edition.id =  e.id
+                inner join OpusAuthor oa on oa.opus.id = oe.opus.id
+                inner join Author a on a.id = oa.author.id
+                inner join Opus o on o.id = oa.opus.id
+                where a.id = :authorId
+            """)
+    List<EditionResponseDTO> findAllByAuthorId(Long authorId);
 
 }

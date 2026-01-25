@@ -20,8 +20,4 @@ public class AuthorService extends GenericCrudService<Author, Long> {
         return this.getCrudRepository().save(author);
     }
 
-    public void comprar() {
-
-    }
-
 }

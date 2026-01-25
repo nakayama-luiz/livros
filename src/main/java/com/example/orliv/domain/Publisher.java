@@ -3,13 +3,17 @@ package com.example.orliv.domain;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "publisher")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Publisher {
     @Id
     @SequenceGenerator(allocationSize = 1, name = "gen_publisher", sequenceName = "seq_publisher")

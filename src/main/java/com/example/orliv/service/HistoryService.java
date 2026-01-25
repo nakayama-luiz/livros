@@ -20,11 +20,10 @@ public class HistoryService {
 
     public ReadingHistory create(ReadingHistory readingHistory){
         Bookcases bookcase = bookcaseRepository.findById(readingHistory.getBookcase().getId()).orElseThrow();
-
         Edition edition = editionRepository.findById(bookcase.getEditions().getId()).orElseThrow();
 
         if (readingHistory.getPages() > edition.getPages()) {
-          throw new RuntimeException("Pages read could not excced the number of pages.");
+            throw new IllegalArgumentException("Pages read could not exceed the number of pages.");
         } else if (readingHistory.getPages().equals(edition.getPages())) {
            bookcase.setStatus(Status.LIDOS);
            bookcaseRepository.save(bookcase);
